@@ -209,14 +209,7 @@ where $m_f = \max |m(t)|$ represents the peak value of the message signal. The m
 
 $$\mu = \frac{\Delta f}{B}$$
 
-where $B$ denotes the message bandwidth.
-
-**Observations about Frequency Modulation (FM)**
-
-- As frequency deviation ($\Delta f$) increases, the density of the FM signal in the time domain becomes more spread out.  
-- A larger $\Delta f$ also widens the FM signal’s power spectral density (PSD) bandwidth.  
-- Carson’s rule estimates the FM bandwidth as $B_{FM} \approx 2 (\Delta f + B)$ where $B$ is the highest modulating (message) frequency.  
-
+where $B$ denotes the message bandwidth. 
 
 ### Task 1: Set the parameters as in the following table and observe the changes in the modulated signal. 
 
@@ -264,6 +257,12 @@ $$
 $$
 
 When the frequency sensitivity is very high, there are rapid and large frequency variations in the time domain. The oscillations become more compressed and stretched as the frequency sweeps faster. The number of spectral peaks increase with a high $k_f$ and the signals energy is distributed among many frequencies.
+
+**Observations about Frequency Modulation (FM)**
+
+- As frequency deviation ($\Delta f$) increases, the density of the FM signal in the time domain becomes more spread out.  
+- A larger $\Delta f$ also widens the FM signal’s power spectral density (PSD) bandwidth.  
+- Carson’s rule estimates the FM bandwidth as $B_{FM} \approx 2 (\Delta f + B)$ where $B$ is the highest modulating (message) frequency. 
 
 ### Task 3: Include the block diagram of your FM_Modulator.gvi in your logbook.
 
@@ -327,6 +326,8 @@ This method effectively converts frequency variations into amplitude variations,
 
 ![FM Demodulation Block](demodblock.png)
 
+We differentiate
+
 ## Exercise 3: FM Simulation
 
 ### Task 1: Add the block diagram to your logbook.
@@ -342,6 +343,15 @@ The demoulated wave looks very similar to the original message wave
 ## Exercise 4: FM Communications via USRP
 
 ### Task 1: Add the power spectrum graph for each of these cases into your logbook. Be sure to scale the horizontal axis so that each spectrum is visible clearly. Annotate your spectra to show the FM signal bandwidth (Carson’s rule). 
+
+**Frequency Deviation = 1khz**
+![](task4delta1kCORRECTONE.png)
+
+**Frequency Deviation = 5khz**
+![](task4delta5k.png)
+
+**Frequency Deviation = 30khz**
+![](task4delta30k.png)
 
 # Lab 4 
 
