@@ -211,6 +211,13 @@ $$\mu = \frac{\Delta f}{B}$$
 
 where $B$ denotes the message bandwidth.
 
+**Observations about Frequency Modulation (FM)**
+
+- As frequency deviation ($\Delta f$) increases, the density of the FM signal in the time domain becomes more spread out.  
+- A larger $\Delta f$ also widens the FM signal’s power spectral density (PSD) bandwidth.  
+- Carson’s rule estimates the FM bandwidth as $B_{FM} \approx 2 (\Delta f + B)$ where $B$ is the highest modulating (message) frequency.  
+
+
 ### Task 1: Set the parameters as in the following table and observe the changes in the modulated signal. 
 
 | Parameter                     | Value           |
@@ -237,6 +244,24 @@ A little more frequency variation can be seen in the FM signal. More peaks are s
 
 **Graphs for $k_f=5000$**
 ![ $k_f=5000$ ](task1kf5000.png)
+
+For Δf = 500Hz
+
+$$
+μ = Δf / B = 500 / 1000 = 0.5
+$$
+
+For Δf = 2000Hz
+
+$$
+μ = Δf / B = 2000 / 1000 = 2
+$$
+
+For Δf = 5000Hz
+
+$$
+μ = Δf / B = 5000 / 1000 = 5
+$$
 
 When the frequency sensitivity is very high, there are rapid and large frequency variations in the time domain. The oscillations become more compressed and stretched as the frequency sweeps faster. The number of spectral peaks increase with a high $k_f$ and the signals energy is distributed among many frequencies.
 
@@ -326,6 +351,8 @@ The demoulated wave looks very similar to the original message wave
 
 ![dpsk system block diagram](fullblock.png)
 
+### Task 2: Run your code several times using the initial configuration used for the BPSK system. Explain your observation(s) on the BER performance of the system.
+
 **Graph for $rxgain=0, txgain=0$**
 ![bervalue1](bertrial1.png)
 
@@ -338,8 +365,11 @@ The demoulated wave looks very similar to the original message wave
 **Graph for $rxgain=-15, txgain=-40$**
 ![bervalue4](bertrial3-15-40.png)
 
-### Task 2: Run your code several times using the initial configuration used for the BPSK system. Explain your observation(s) on the BER performance of the system.
+
 
 ### Task 3: Compare the performance of BPSK and DPSK, and explain your findings.
 
+The BPSK results had overall lower BER values as it is a coherent detection method and can have a low BER when it has an accurate reference carrier signal to demodulate. 
+
+DPSK encodes information in the difference between successive symbols. The differential detection process makes DPSK inherently more susceptible to noise, because any noise in the previous symbol can degrade the detection of the current symbol. This may result in an error propagation resulting in about a 3 dB performance loss relative to coherent BPSK.
 
