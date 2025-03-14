@@ -874,7 +874,9 @@ We also see that the variation in readings increases as the gain decrease, which
 
 ![dpsk system block diagram](fullblock.png)
 
+To implement the DPSK system, we started by duplicating our BPSK transmitter and receiver. In the transmitter, we added a differential encoder after the AddFrameHeader function to encode both the frame header and symbols. We then removed the Insert Pilots and AddFrameHeader(Complex) functions, converting the Quick Scale 1D output directly into complex values before feeding it to niUSRP Write Tx Data.
 
+On the receiver side, we removed the Channel Estimator and Frame Sync (Complex) functions, connecting the received data directly to Convolution (CDB) while ensuring proper signal handling with PulseAlign (Complex) and FrameSync (Complex). Finally, we placed a differential decoder after the Decimate function and before FrameSync (Complex) to correctly decode the received symbols, streamlining the DPSK system.
 
 ### Task 2: Run your code several times using the initial configuration used for the BPSK system. Explain your observation(s) on the BER performance of the system.
 
