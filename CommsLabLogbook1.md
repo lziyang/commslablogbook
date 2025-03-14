@@ -661,8 +661,6 @@ The demoulated wave looks very similar to the original message wave barring the 
 **Frequency Deviation = 30khz**
 ![](task4delta30k.png)
 
-## Case A
-
 $\Delta f = 1 \,\text{kHz}$
 
 $$
@@ -690,9 +688,19 @@ B_T \approx 2(\Delta f + f_m)
 = 62\,\text{kHz}.
 $$
 
-Thus by Carson's rule, the FM signal bandwidth should be roughly $±2kHz$ for $\Delta f = 1 \,\text{kHz}$, $±6kHz$ for $\Delta f = 5 \,\text{kHz}$, $±31kHz$ for $\Delta f = 30 \,\text{kHz}$, 
+Thus by Carson's rule, the FM signal bandwidth should be roughly $±2kHz$ for $\Delta f = 1 \,\text{kHz}$, $±6kHz$ for $\Delta f = 5 \,\text{kHz}$, $±31kHz$ for $\Delta f = 30 \,\text{kHz}$.
 
-## Lab 4 - Binary Phase Shift Keying (BPSK) via USRP
+## Challenge
+
+**Gain=0**
+![](1.png)
+![](2.png)
+![](4.png)
+![](5.png)
+![](6.png)
+![](8.png)
+
+# Lab 4 - Binary Phase Shift Keying (BPSK) via USRP
 
 In phase-shift keying (PSK) modulation, information is encoded on the phase of the transmitted carrier rather than on its amplitude (ASK) or frequency (FSK).
 
@@ -965,3 +973,17 @@ The BPSK results had overall lower BER values as it is a coherent detection meth
 
 DPSK encodes information in the difference between successive symbols. The differential detection process makes DPSK inherently more susceptible to noise, because any noise in the previous symbol can degrade the detection of the current symbol. This may result in an error propagation resulting in about a 3 dB performance loss relative to coherent BPSK.
 
+## Challenge
+
+![](GetImage.png)
+![](GetImage(1).png)
+![](GetImage(2).png)
+
+| **Tx Gain (dB)** | **Rx Gain (dB)** |   **#1**   |   **#2**   |   **#3**   |   **#4**   |   **#5**   | **Average BER** |
+|:---------------:|:----------------:|:----------:|:----------:|:----------:|:----------:|:----------:|:--------------:|
+|        0        |         0        | 0   | 0   | 0   | 0.237515  | 0   | 0.047503       |
+|      -35        |       -15        | 0.465045   | 0.426890   | 0.452112   | 0.471312   | 0.466035   | 0.456261       |
+|      -37        |       -15        | 0.468443   | 0.475159   | 0.466139   | 0.466927   | 0.459108   | 0.467171       |
+|      -40        |       -15        | 0.472711   | 0.477719   | 0.464299   | 0.462301   | 0.475311   | 0.470395       |
+
+The values overall did not show signficiant improvements liekly due to using a different USRP.
