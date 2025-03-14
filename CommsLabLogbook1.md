@@ -426,21 +426,40 @@ The resulting graph is largely unchanged for coherent demodulation since it uses
 
 ### Task 1: Run the code and explain in your logbook how the transmitter and receiver work. Hint: the USRP does all the modulation and demodulation on its own so the modules only needs to provide the complex data for the USRP to modulate. At the receiver the USRP will return the demodulated data.
 
+**USRP rx Block Diagram**
+![](exc3rxblock.PNG)
+
+**
 ![](exc3rxrun1.PNG)
+
+**USRP tx Block Diagram**
+![](exc3txblock.PNG)
 
 ![](exc3txrun1.PNG)
 
 
 ### Task 2: Transmit a single-tone message signal with frequency 5kHz and modulation index 1 (you may have to adjust the low cutoff frequency of the filter). Run the receiver, and plot the demodulated signal in time, and its PSD. Adjust the time and PSD plot to the relevant region so that the plot is not just a blur, and rename the axes appropriately. Add the plots to your logbook.
+
 ![](exc3task2rx5khzmew1v2.png)
+
+This is the plot without adjusting the cut off frequency.
+
 ![](exc3task2rx5khzmew1cutofffreq10k.png)
 
+This plot with an adjusted cutoff frequency gives a much more consistent and understandable wave cutting off the high frequency components that disrput the demodulated signal.
 
 ### Task 3: To observe the effect of noise in the demodulated signal, increase the receiver’s gain to 20 dB (your receiver will start to detect other weaker signals in addition to the transmitted signal), and adjust the X axis of the demodulated message (in time domain) to show values between 0 second (s) and 0.004 s. Then, change the modulation index (𝜇) value and observe the effects on the plots of the demodulated signal in both time and frequency. From what value of 𝜇 can noise be clearly noticed in the plots? Copy the image of the noisy demodulation into your logbook.
 
+**Modulation Index=0.5**
 ![](exc3task3modindex0.5.png)
+
+**Modulation Index=1**
 ![](exc3task3modindex1.png)
+
+**Modulation Index=5**
 ![](exc3task3modindex5.png)
+
+The shape of the demodulated signal looks mostly consistent at a modulation index of 5 and looks heavily distorted at values 0.5 and 1.
 
 # Lab 3
 
@@ -627,7 +646,7 @@ Integration of modulation and demodulation subVIs.
 
 ![FM top graphs](task3graphs.png)
 
-The demoulated wave looks very similar to the original message wave barring the intial transient which could perhaps be due to the low pass filter in demodulaiton if it were not critically damped.
+The demoulated wave looks very similar to the original message wave barring the intial transient which could perhaps be due to the low pass filter in demodulation if it were not critically damped.
 
 ## Exercise 4: FM Communications via USRP
 
@@ -642,6 +661,36 @@ The demoulated wave looks very similar to the original message wave barring the 
 **Frequency Deviation = 30khz**
 ![](task4delta30k.png)
 
+## Case A
+
+$\Delta f = 1 \,\text{kHz}$
+
+$$
+B_T \approx 2(\Delta f + f_m)
+= 2(1\,\text{kHz} + 1\,\text{kHz})
+= 2 \times 2\,\text{kHz}
+= 4\,\text{kHz}.
+$$
+
+$\Delta f = 5 \,\text{kHz}$
+
+$$
+B_T \approx 2(\Delta f + f_m)
+= 2(5\,\text{kHz} + 1\,\text{kHz})
+= 2 \times 6\,\text{kHz}
+= 12\,\text{kHz}.
+$$
+
+$\Delta f = 30 \,\text{kHz}$
+
+$$
+B_T \approx 2(\Delta f + f_m)
+= 2(30\,\text{kHz} + 1\,\text{kHz})
+= 2 \times 31\,\text{kHz}
+= 62\,\text{kHz}.
+$$
+
+Thus by Carson's rule, the FM signal bandwidth should be roughly $±2kHz$ for $\Delta f = 1 \,\text{kHz}$, $±6kHz$ for $\Delta f = 5 \,\text{kHz}$, $±31kHz$ for $\Delta f = 30 \,\text{kHz}$, 
 
 ## Lab 4 - Binary Phase Shift Keying (BPSK) via USRP
 
@@ -876,7 +925,7 @@ We also see that the variation in readings increases as the gain decrease, which
 
 To implement the DPSK system, we started by duplicating our BPSK transmitter and receiver. In the transmitter, we added a differential encoder after the AddFrameHeader function to encode both the frame header and symbols. We then removed the Insert Pilots and AddFrameHeader(Complex) functions, converting the Quick Scale 1D output directly into complex values before feeding it to niUSRP Write Tx Data.
 
-On the receiver side, we removed the Channel Estimator and Frame Sync (Complex) functions, connecting the received data directly to Convolution (CDB) while ensuring proper signal handling with PulseAlign (Complex) and FrameSync (Complex). Finally, we placed a differential decoder after the Decimate function and before FrameSync (Complex) to correctly decode the received symbols, streamlining the DPSK system.
+On the receiver side, we removed the Channel Estimator and Frame Sync (Complex) functions, connecting the received data directly to Convolution (CDB) while ensuring proper signal handling with PulseAlign (Complex) and FrameSync (Complex). Finally, we placed a differential decoder after the Decimate function and before FrameSync (Complex) to correctly decode the received symbols.
 
 ### Task 2: Run your code several times using the initial configuration used for the BPSK system. Explain your observation(s) on the BER performance of the system.
 
